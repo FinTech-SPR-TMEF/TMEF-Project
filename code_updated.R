@@ -47,7 +47,8 @@ merged_review_film12 <- left_join(merged_review_film1, movie_info2, by = "Movie"
 #delete one of the two release date and "belongs_to_collection" column
 merged_review_film_12 <- merged_review_film12%>%
   dplyr::select(-`Release Date`)%>%
-  dplyr::select(-belongs_to_collection)
+  dplyr::select(-belongs_to_collection) %>% 
+  filter(Year > 1999)
 
 
 #standardize datadate and filter Date < release_date, budget and revenue != 0
@@ -73,10 +74,3 @@ merged_review_film_after <- merged_review_film_12 %>%
 
 write.csv(merged_review_film_pre, "merged_review_pre.csv", row.names = TRUE)
 write.csv(merged_review_film_after, "merged_review_after.csv", row.names = TRUE)
-
-
-
-
-
-
-
